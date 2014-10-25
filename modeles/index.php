@@ -1,20 +1,59 @@
 <?php
 
-function afficheSociete($auth){
-    $reqSociete = $auth->prepare('SELECT DISTINCT ac.idSociete,so.nomSociete FROM accessociete ac INNER JOIN societe so ON ac.idSociete = so.idSociete WHERE ac.idUser = :id ORDER BY ac.idSociete ASC');
-    $reqSociete->bindValue(':id', $_SESSION['id'], PDO::PARAM_INT);
-    $reqSociete->execute();
+function getFirstBook($auth){
+    $getFirst = $auth->query('SELECT * FROM books WHERE category = 1 ORDER BY id ASC');
     $i=0;
-    while($donnees = $reqSociete->fetch()){
-        $res[$i]['idSociete'] = $donnees['idSociete'];
-        $res[$i]['nomSociete'] = $donnees['nomSociete'];
-        
+    while($donnees = $getFirst->fetch()){
+        $data[$i]['id'] = $donnees['id'];
+        $data[$i]['title'] = $donnees['title'];
+        $data[$i]['date'] = $donnees['date'];
+
         $i++;
     }
-    $reqSociete->closeCursor();
-    
-    if(!empty($res)){
-        return $res;
+    return($data);
+}
+
+function getBooksContent($auth, $idCategory){
+    $content = $auth ->prepare('SELECT * FROM books WHERE category = :idCategory');
+    $content->bindValue(":idCategory", $idCategory, PDO::PARAM_STR);
+    $content->execute();
+    $i=0;
+    while($donnees = $content->fetch()){
+        $data[$i]['id'] = $donnees['id'];
+        $data[$i]['title'] = $donnees['title'];
+        $data[$i]['date'] = $donnees['date'];
+        $data[$i]['story'] = nl2br($donnees['story']);
+
+        $i++;
     }
+    return $data;
+}
+
+function getBook($auth, $id){
+    $content = $auth ->prepare('SELECT * FROM books WHERE category = 1 AND id = :id');
+    $content->bindValue(":id", $id, PDO::PARAM_INT);
+    $content->execute();
+    $i=0;
+    while($donnees = $content->fetch()){
+        $data[$i]['id'] = $donnees['id'];
+        $data[$i]['title'] = $donnees['title'];
+        $data[$i]['date'] = $donnees['date'];
+        $data[$i]['story'] = nl2br($donnees['story']);
+
+        $i++;
+    }
+    return $data;
+}
+
+function getCategories($auth){
+    $categories = $auth->query('SELECT * FROM category');
+    $i=0;
+    while($donnees = $categories->fetch()){
+        $data[$i]['id'] = $donnees['id'];
+        $data[$i]['libelle'] = $donnees['libelle'];
+        $i++;
+    }
+    $categories->closeCursor();
+    return $data;
 }
 ?>

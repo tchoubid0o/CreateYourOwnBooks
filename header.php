@@ -36,7 +36,7 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <!-- Permet le Live Edit dans Sublime Text -->
-  <script src='scripts/webloader.js'></script>
+  <!--<script src='scripts/webloader.js'></script> -->
   </head>
 
   <body>
