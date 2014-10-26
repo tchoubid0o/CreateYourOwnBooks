@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 25 Octobre 2014 à 22:19
+-- Généré le: Dim 26 Octobre 2014 à 14:22
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -70,6 +70,30 @@ CREATE TABLE IF NOT EXISTS `category` (
 INSERT INTO `category` (`id`, `libelle`) VALUES
 (1, 'Livre'),
 (2, 'Bande dessinée');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `prenom` varchar(55) NOT NULL,
+  `nom` varchar(55) NOT NULL,
+  `mail` varchar(50) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `ip` varchar(25) NOT NULL,
+  `adm` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`id`, `prenom`, `nom`, `mail`, `password`, `ip`, `adm`) VALUES
+(1, 'Michaël', 'RUPP', 'michaelrupp@free.fr', '1ba31aff2877ab2255ebe6c4b89a10ac', '127.0.0.1', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
