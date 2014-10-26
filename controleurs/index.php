@@ -6,7 +6,7 @@ require_once('./modeles/index.php');
 	$categories = getCategories($auth);
 	if(isset($_POST['bookId'])){
 		if( (strstr($_SERVER['HTTP_ACCEPT'], "html") == FALSE ) && ($_SERVER['REQUEST_METHOD'] == 'POST') ){
-			$bookData = getBook($auth, $_POST['bookId']);
+			$bookData = getBook($auth, $_POST['bookId'], $_POST['idCat']);
 			echo json_encode($bookData);
 		}
 	}

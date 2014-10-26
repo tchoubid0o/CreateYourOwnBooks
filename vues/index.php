@@ -28,8 +28,8 @@
 						}
 					if(!isset($_SESSION['id'])){
 					?>
-					<li><a href="inscription.html">Inscription</a></li>
 					<li><a href="connexion.html">Connexion</a></li>
+					<li><a href="inscription.html">Inscription</a></li>
 					<?php
 					}else{
 					?>
@@ -38,6 +38,7 @@
         		<ul class="dropdown-menu">
             	<li><a href="#">Mes Options</a></li>
             	<li><a href="#">Mes Livres</a></li>
+            	<li><a href="write.html">Rédiger un livre</a></li>
             	<li class="divider"></li>
             	<li><a href="deconnexion.html">Déconnexion</a></li>
         		</ul>
@@ -88,7 +89,7 @@
 						event.preventDefault();
 						$("#listGroup > a").removeClass("active");
 						$(this).addClass("active");
-						$.post(ROOTPATH+'index.html',{bookId: $(this).data("id")}, function(data){
+						$.post(ROOTPATH+'index.html',{bookId: $(this).data("id"), idCat: $("#listCategories > li.active").data("idcategory")}, function(data){
 								$("#textFromBook").html(data[0].story);
 							}, 'json');
 					});

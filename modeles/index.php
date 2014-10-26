@@ -22,15 +22,16 @@ function getBooksContent($auth, $idCategory){
         $data[$i]['id'] = $donnees['id'];
         $data[$i]['title'] = $donnees['title'];
         $data[$i]['date'] = $donnees['date'];
-        $data[$i]['story'] = nl2br($donnees['story']);
+        $data[$i]['story'] = nl2br(htmlspecialchars($donnees['story']));
 
         $i++;
     }
     return $data;
 }
 
-function getBook($auth, $id){
-    $content = $auth ->prepare('SELECT * FROM books WHERE category = 1 AND id = :id');
+function getBook($auth, $id, $idCat){
+    $content = $auth ->prepare('SELECT * FROM books WHERE category = :idCat AND id = :id');
+    $content->bindValue(":idCat", $idCat, PDO::PARAM_INT);
     $content->bindValue(":id", $id, PDO::PARAM_INT);
     $content->execute();
     $i=0;
