@@ -1,31 +1,43 @@
 <?php if (!isset($_SESSION['id'])) {
     ?>
-    <div id="logintop">
-        <div class="loginh">	
-            <center>
-                <h2 style="font-size: 1.75rem;line-height: 1.6em;text-align: center;color: #223340;font-weight: bold;margin: 2rem 0 0;margin-top: 0px; margin-bottom: 10px; text-decoration: underline;">Identifiez-Vous</h2>
-                <form action="<?php echo ROOTPATH; ?>/connexion.html" method="post">
-                    <label for="mail" class="labmail" style="width: 100px; float: left;">e-mail :</label>
-                    <div class="input_content" style="display: inline;"><input class="input_insc" id="mail" type="text" name="mail" placeholder="Adresse email" /></div><br />
-
-                    <label for="password" style="width: 100px; float: left;">Mot de passe :</label>
-                    <div class="input_content" style="display: inline;"><input class="input_insc" id="password" type="password" name="password" placeholder="Password..."/></div><br />
-
-                    <br />
-                    <input type="hidden" name="connexion" value="1" />
-                    <div style="margin: auto;">
-                        <input class="submit" type="submit" value="Identifiez-vous" style="cursor: pointer;color: #fff;border-radius: 4px;padding: 10px;background-color: #2db3e8;text-transform: none;text-decoration: none;font-weight: 600;-moz-transition: background-color 0.35s linear;-webkit-transition: background-color 0.35s linear;transition: background-color 0.35s linear;" id="submit" />	
-                        <br/><br/><a href="<?php echo ROOTPATH; ?>/recover.html">Mot de passe oublié</a>
-                            <?php
-                        if(isset($connexion['message_global'])){
-                        echo "<br/><br/>".$connexion['message_global'];
-                        }
-                        ?>
+    <ul class="nav nav-tabs" role="tablist">
+        <li><a href="index.html">CreateUrOwnBooks</a></li>
+        <li class="active"><a href="#">Connexion</a></li>
+        <li><a href="inscription.html">Inscription</a></li>
+    </ul>
+      <section class="row" style="margin-right: 0px; margin-left: 0px; margin-top: 15px;">
+        <div class="bs-example">
+            <form class="form-horizontal" action="<?php echo ROOTPATH; ?>/connexion.html" method="post">
+                <legend>Identifiez-Vous</legend>
+                <div class="form-group row">
+                    <label for="inputEmail" class="col-sm-2">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" name="mail" class="form-control" id="inputEmail" placeholder="Email" required>
                     </div>
-                </form>
-            </center>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" required>
+                    </div>
+                </div>
+                <input type="hidden" name="connexion" value="1" />
+                <div class="checkbox">
+                    <label><input type="checkbox"> Remember me</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
         </div>
-    </div>
+        <?php if(!empty($connexion['message_password'])){
+            echo $connexion['message_password'];
+        }
+        if(!empty($connexion['message_mail'])){
+            echo $connexion['message_mail'];
+        }
+        if(!empty($connexion['message_global'])){
+            echo $connexion['message_global'];
+        } ?>
+      </section>
     <?php
 } else {
     echo "<script>document.location.href='".ROOTPATH."/index.html'</script>";

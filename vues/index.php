@@ -26,10 +26,17 @@
               <?php
             }
           }
+        if(!isset($_SESSION['id'])){
+        ?>
+        <li><a href="inscription.html">Inscription</a></li>
+        <li><a href="connexion.html">Connexion</a></li>
+        <?php
+        }
         ?>
       </ul>
       <section class="row" style="margin-left: 0px; margin-top: 15px;">
-        <div class="col-md-4 col-xs-4" style="padding-left: 0px;">
+        <div class="col-md-3 col-xs-3" style="padding-left: 0px;">
+          <!-- place class scrollable-menu in order to enable scrollable menu -->
           <div class="list-group" id="listGroup">
             <?php 
               $i = 0;
@@ -46,7 +53,7 @@
             ?>
           </div>
         </div>
-        <div class="cold-md-8 col-xs-8">
+        <div class="col-md-9 col-xs-9">
           <p id="textFromBook">
             <?php echo nl2br($datas[0]['story']); ?>  
           </p> 
