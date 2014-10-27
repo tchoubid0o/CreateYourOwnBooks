@@ -15,11 +15,16 @@
 	</ul>
 </li>
 </ul>
-
+<?php 
+    if(isset($_GET['act']) && $check['nb'] > 0){
+?>
+<?php 
+    if(isset($save['message'])){echo $save['message'];}
+?>
 <section class="row" style="margin-right: 0px; margin-left: 0px; margin-top: 15px;">
     <div class="bs-example">
-        <form class="form-horizontal" action="<?php echo ROOTPATH; ?>/write.html" method="post">
-            <legend>Rédigez un livre</legend>
+        <form class="form-horizontal" action="<?php echo ROOTPATH; ?>/edit-<?php echo $_GET['act']; ?>.html" method="post">
+            <legend>Editer un livre</legend>
             <div class="form-group row">
                 <label for="inputType" class="col-sm-2">Catégorie du livre : </label>
                 <div class="col-sm-10">
@@ -27,11 +32,11 @@
                 		<option value="0">Choisissez une catégorie</option>
 					  <?php 
 					  	foreach($types as $type){?>
-					  		<option value="<?php echo $type['id'];?>"><?php echo $type['libelle']; ?></option>
+					  		<option value="<?php echo $type['id'];?>" <?php if($type['id'] == $myBook[0]['category']){echo "selected"; } ?>><?php echo $type['libelle']; ?></option>
 					  	<?php
 					  	}
 					  ?>
-					  <option value="-1">Autre</option>
+					  <option value="-1" <?php if($type['id'] == $myBook[0]['category']){echo "selected"; } ?>>Autre</option>
 					</select>
 					
                 </div>
@@ -44,16 +49,17 @@
             <div class="form-group row">
                 <label for="inputTitle" class="col-sm-2">Titre du livre : </label>
                 <div class="col-sm-10">
-                    <input type="text" name="title" class="form-control" id="inputTitle" placeholder="Titre du livre" required>
+                    <input type="text" name="title" class="form-control" id="inputTitle" placeholder="Titre du livre" value="<?php echo $myBook[0]['title']; ?>" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputStory" class="col-sm-2">Histoire : </label>
                 <div class="col-sm-10">
-                	<textarea class="form-control" name="story" id="inputStory" rows="3"></textarea>
+                	<textarea class="form-control" name="story" id="inputStory" rows="3"><?php echo $myBook[0]['story']; ?></textarea>
                 </div>
             </div>
-            <input type="hidden" name="writeBook" value="1" />
+            <input type="hidden" name="bookId" value="<?php echo $_GET['act']; ?>" />
+            <input type="hidden" name="editBook" value="1" />
             <button type="submit" class="btn btn-primary pull-right">Valider</button>
             <script>
                 CKEDITOR.replace( 'inputStory' );
@@ -69,5 +75,9 @@
     </div>
 </section>
 <?php
+}
+else{
+    echo "<div class='alert alert-danger' role='alert'><strong>Erreur,</strong> Vous n'êtes pas l'auteur de ce livre.</div>";
+}
 }
 ?>

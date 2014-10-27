@@ -1,15 +1,3 @@
-	<!-- <nav class="navbar navbar-default">
-					<ul class="nav navbar-nav">
-						<li class="active"> <a href="#">Mes Livres</a> </li>
-						<li> <a href="#">Livres</a> </li>
-						<li> <a href="#">Bandes Dessinées</a> </li>
-					</ul>
-					<form class="navbar-form pull-right">
-						<input type="text" style="width:150px" class="input-small" placeholder="Recherche">
-						<button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-eye-open"></span> Chercher</button>
-					</form>
-				</nav> -->
-
 				<ul class="nav nav-tabs" id="listCategories" role="tablist">
 					<?php
 						if(!isset($_POST['idCategory'])){
@@ -37,7 +25,7 @@
 						<a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-user" data-original-title="" title=""></span> Mon Compte <b class="caret"></b></a>
         		<ul class="dropdown-menu">
             	<li><a href="#">Mes Options</a></li>
-            	<li><a href="#">Mes Livres</a></li>
+            	<li><a href="books.html">Mes Livres</a></li>
             	<li><a href="write.html">Rédiger un livre</a></li>
             	<li class="divider"></li>
             	<li><a href="deconnexion.html">Déconnexion</a></li>
@@ -66,10 +54,8 @@
 							?>
 						</div>
 					</div>
-					<div class="col-md-9 col-xs-9">
-						<p id="textFromBook">
-							<?php echo nl2br($datas[0]['story']); ?>  
-						</p> 
+					<div class="col-md-9 col-xs-9" id="textFromBook">
+						<?php echo nl2br($datas[0]['story']); ?>  
 					</div>
 				</section>
 				<ul class="pagination">
