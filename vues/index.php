@@ -24,7 +24,7 @@
 					<li class="dropdown pull-right">
 						<a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-user" data-original-title="" title=""></span> Mon Compte <b class="caret"></b></a>
         		<ul class="dropdown-menu">
-            	<li><a href="#">Mes Options</a></li>
+            	<li><a href="settings.html">Mes Options</a></li>
             	<li><a href="books.html">Mes Livres</a></li>
             	<li><a href="write.html">Rédiger un livre</a></li>
             	<li class="divider"></li>

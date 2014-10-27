@@ -1,11 +1,14 @@
 ﻿<?php
-function connexion($auth, $mail, $password) {
+function connexion($auth, $mail, $password, $remember) {
     if(!isset($_SESSION['id'])) {
         if(isset($mail) && !empty($mail) && isset($password) && !empty($password)) {
             $connexion['message_mail'] = "";
             $connexion['message_password'] = "";
             $connexion['message_actif'] = "";
-
+            if($remember){
+                $year = time() + 31536000;
+                setcookie('remember_me', $mail, $year);
+            }
             // On vérifie si le mail existe dans la bdd
             if(empty($connexion['message_pseudo'])) {
                 $retour_check_pseudo = $auth->prepare('SELECT COUNT(*) AS nb FROM user WHERE mail = :mail');

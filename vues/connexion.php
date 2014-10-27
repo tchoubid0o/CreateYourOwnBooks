@@ -12,7 +12,7 @@
                 <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2">Email</label>
                     <div class="col-sm-10">
-                        <input type="email" name="mail" class="form-control" id="inputEmail" placeholder="Email" required>
+                        <input type="email" name="mail" class="form-control" id="inputEmail" placeholder="Email" value="<?php if(isset($_COOKIE['remember_me']) && !empty($_COOKIE['remember_me'])){echo $_COOKIE['remember_me'];} ?>" required>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -23,7 +23,7 @@
                 </div>
                 <input type="hidden" name="connexion" value="1" />
                 <div class="checkbox">
-                    <label><input type="checkbox"> Remember me</label>
+                    <label><input type="checkbox" name="remember" value="1"> Remember me</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
